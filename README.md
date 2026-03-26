@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Message Board
 
-## Getting Started
+- Public one-page message board application
+- Visitors can create, view, and delete short messages
+- Messages are shown newest first
+- Timestamps are formatted in Hungarian style
+- Supports light mode and dark mode
+- Built with Next.js App Router, TypeScript, Tailwind CSS, and Supabase
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Public message creation
+- Public message listing
+- Public message deletion
+- Reverse chronological order
+- Hungarian date/time formatting
+- Inline validation
+- Toast feedback for create/delete actions
+- Responsive single-page UI
+- Manual theme toggle with persisted preference
+
+## Tech stack
+
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS 4
+- Supabase
+- Vercel
+
+## Dependencies
+
+### App dependencies
+
+- `next`
+- `react`
+- `react-dom`
+- `@supabase/supabase-js`
+- `clsx`
+- `tailwind-merge`
+- `lucide-react`
+- `zod`
+- `next-themes`
+- `sonner`
+
+### Dev dependencies
+
+- `typescript`
+- `eslint`
+- `eslint-config-next`
+- `tailwindcss`
+- `@tailwindcss/postcss`
+- `@types/node`
+- `@types/react`
+- `@types/react-dom`
+
+## Environment variables
+
+Create `.env.local` in the project root:
+
+```env
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm run dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+App: http://localhost:3000
 
-## Learn More
+## Notes
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Initial message list is fetched server-side
+- Create and delete actions go through internal API routes
+- The browser does not write to Supabase directly
+- Validation runs on both frontend and backend
+- Message content is stored and rendered as plain text only
