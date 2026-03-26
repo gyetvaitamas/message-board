@@ -1,25 +1,11 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
-export default function ThemeToggle() {
+function ThemeToggleInner() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return (
-      <span
-        aria-hidden="true"
-        className="inline-flex h-10 w-10 rounded-full border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
-      />
-    );
-  }
 
   const isDark = resolvedTheme === "dark";
   const nextTheme = isDark ? "light" : "dark";
@@ -36,3 +22,13 @@ export default function ThemeToggle() {
     </button>
   );
 }
+
+export default dynamic(() => Promise.resolve(ThemeToggleInner), {
+  ssr: false,
+  loading: () => (
+    <span
+      aria-hidden="true"
+      className="inline-flex h-10 w-10 rounded-full border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+    />
+  ),
+});
